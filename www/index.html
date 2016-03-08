@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; font-src data: *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">  
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -17,22 +18,44 @@
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
+    <script src="lib/ngcordova/ng-cordova.js"></script>
+
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
     <script src="js/listaContatosService.js"></script>
     <script src="js/listaContatosControle.js"></script>
+
+   <style>
+    .title {
+       font-color: red;
+    }
+    </style>
   </head>
   <body ng-app="projetoBranco" ng-controller = "listaContatosControle">
 
     <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">{{titulo}}</h1>
+      <ion-header-bar class="bar-dark">
+        <h1 class="title ion-person-stalker">{{titulo}}</h1>
       </ion-header-bar>
-      <ion-content>
-        <ion-list>
+      <ion-content class="padding">
+        <!--<ion-list>
           <ion-item ng-repeat="contato in listaContatos">
             {{contato.nome}}
+          </ion-item>
+        </ion-list>-->
+        <button class="button button-full button-positive" ng-click="getAllContacts()">
+            Carregar Contatos
+        </button>   
+        <!--<button class="button button-full button-positive" ng-click="addContact()">
+          Add Contact - Gajotres
+        </button>
+        <button class="button button-full button-positive" ng-click="removeContact()">
+          Remove Contact - Gajotres
+        </button>     -->
+        <ion-list>
+          <ion-item ng-repeat="con in contacts">
+            {{con.displayName}}
           </ion-item>
         </ion-list>
       </ion-content>
